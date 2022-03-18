@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('front.index');
+Route::get('/laravel', function () {
+    return view('welcome');
 });
+
+Route::get('/',[HomeController::class,'index']);
+
+Route::get('/about',[HomeController::class,'about']);
+
+Route::redirect('/hakkımızda','/about');
 //sa
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-Route::get('/abaout', [app/http/\App\Http\Controllers\HomeController::Class, 'index']);
