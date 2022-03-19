@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hakkımızda</title>
-</head>
-<body>
+@extends('layouts.main')
 
-<h1>Biz Süperiz</h1>
-<p>10 numara sayfayız</p>
 
-</body>
-</html>
+@section('content')
+    <p>Hakkımızda</p>
+@endsection

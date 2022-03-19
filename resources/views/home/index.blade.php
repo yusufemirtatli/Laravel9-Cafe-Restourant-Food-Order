@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>First Laravel Page</title>
-</head>
-<body>
+@extends('layouts.main')
 
-<h1>Baslik</h1>
-<p>Paragraf</p>
+@section('title','SubPage title')
 
-</body>
-</html>
+@section('Header')
+    @parent
+
+    <p>This happend header</p>
+@endsection
+
+@section('content')
+    <p>This is my body content</p>
+@endsection
+
