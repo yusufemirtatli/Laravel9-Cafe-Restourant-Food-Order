@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Layout Tittle - @yield('title')</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Pigga landing page.">
+    <meta name="author" content="Devcrud">
+    <title>@yield("title")</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Pigga main styles -->
+    <link rel="stylesheet" href="assets/css/pigga.css">
+    @yield("head")
+
 </head>
+
 <body>
-@section('Header')
-    This is Header
-@show
+@include("home.header")
 
-<div class="container">
-    @yield('content')
-</div>
 
-@section('Footer')
-    This is Footer
-@show
+@yield("content")
 
+
+@include("home.footer")
 </body>
 </html>

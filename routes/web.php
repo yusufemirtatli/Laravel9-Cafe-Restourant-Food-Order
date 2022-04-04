@@ -22,6 +22,10 @@ Route::get('/',[HomeController::class,'index']);
 
 Route::get('/about',[HomeController::class,'about']);
 
+Route::get('/deneme',[HomeController::class,'deneme']);
+
+Route::get('/test.blade.php',[HomeController::class,'test']);
+
 Route::redirect('/hakkımızda','/about');
 //sa
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

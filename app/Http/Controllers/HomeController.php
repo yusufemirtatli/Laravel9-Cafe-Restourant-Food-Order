@@ -15,4 +15,15 @@ class HomeController extends Controller
     {
         return view('home.about');
     }
+
+    public function deneme()
+    {
+        return view('home.deneme');
+    }
+
+    public function test()
+    {
+        return view('home.test');
+    }
+
 }
