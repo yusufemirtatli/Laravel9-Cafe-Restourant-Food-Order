@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +27,11 @@ Route::get('/deneme',[HomeController::class,'deneme']);
 Route::get('/test.blade.php',[HomeController::class,'test']);
 
 Route::redirect('/hakkımızda','/about');
-//sa
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+//**************************** ADMİN PANEL *********************************
+
+Route::get('/admin',[AdminHomeController::class,'index']);
