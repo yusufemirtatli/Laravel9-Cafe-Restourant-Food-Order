@@ -35,8 +35,8 @@
                                     <td>{{$rs->description}}</td>
                                     <td>{{$rs->image}}</td>
                                     <td>{{$rs->status}}</td>
-                                    <td><a href="admin/category/edit{{$rs->id}}" class="btn btn-primary btn-rounded btn-fw">Edit</a></td>
-                                    <td><a href="admin/category/delete{{$rs->id}}" class="btn btn-danger btn-rounded btn-fw">Delete</a></td>
+                                    <td><a href="category/edit/{{$rs->id}}" class="btn btn-primary btn-rounded btn-fw">Edit</a></td>
+                                    <td><a href="category/delete/{{$rs->id}}" class="btn btn-danger btn-rounded btn-fw">Delete</a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
