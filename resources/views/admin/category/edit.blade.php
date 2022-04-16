@@ -1,11 +1,11 @@
 @extends('layouts.adminbase')
 
-@section('title','Edit Category')
+@section('title','Show Category')
 
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
-            <h1>Edit Category {{$data->title}}</h1>
+            <h1>Show Category {{$data->title}}</h1>
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
