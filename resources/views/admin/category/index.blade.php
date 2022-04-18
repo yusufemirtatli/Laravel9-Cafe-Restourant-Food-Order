@@ -19,9 +19,9 @@
                                 <thead>
                                 <tr>
                                     <th>Title</th>
+                                    <th>Parent</th>
                                     <th>Id</th>
                                     <th>Keywords</th>
-                                    <th>Description</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit</th>
@@ -33,10 +33,14 @@
                                 @foreach($data as $rs)
                                 <tr>
                                     <td>{{$rs->title}}</td>
+                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</td>
                                     <td>{{$rs->id}}</td>
                                     <td>{{$rs->keywords}}</td>
-                                    <td>{{$rs->description}}</td>
-                                    <td>{{$rs->image}}</td>
+                                    <td>
+                                        @if($rs->image)
+                                            <img src="{{Storage::url($rs->image)}}" style="height: 50px;width: 50px">
+                                        @endif
+                                    </td>
                                     <td>{{$rs->status}}</td>
                                     <td><a href="category/edit/{{$rs->id}}" class="btn btn-primary btn-rounded btn-fw">Edit</a></td>
                                     <td><a href="category/destroy/{{$rs->id}}" class="btn btn-danger btn-rounded btn-fw" onclick="return confirm('Deleting!! Are you sure ?')">Delete</a></td>

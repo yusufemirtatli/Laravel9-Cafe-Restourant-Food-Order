@@ -42,9 +42,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
-        Route::get('/store','store')->name('store');
+        Route::post('/store','store')->name('store');
         Route::get('/edit/{id}', 'edit')->name('edit');
-        Route::get('/update/{id}', 'update')->name('update');
+        Route::post('/update/{id}', 'update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
         Route::get('/show/{id}', 'show')->name('show');
     });

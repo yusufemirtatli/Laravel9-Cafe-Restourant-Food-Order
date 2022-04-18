@@ -11,8 +11,17 @@
                     <div class="card-body">
                         <h4 class="card-title">Category Form</h4>
                         <p class="card-description"> Category Form Details </p>
-                        <form class="forms-sample" action="/admin/category/store" method="get" enctype="multipart/form-data">
+                        <form class="forms-sample" action="/admin/category/store" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group">
+                                <label>Parent Category</label>
+                                <select class="form-control" name="parent_id" style="color: #6a7293">
+                                    <option value="0" selected="selected" style="color: #babcb1">Main Category</option>
+                                    @foreach($data as $rs)
+                                        <option style="color: #babcb1" value="{{$rs->id}}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Title</label>
                                 <input type="text" style="color: #babcb1" class="form-control" name="title" placeholder="Title">
@@ -29,17 +38,16 @@
                                 <label>File upload</label>
                                 <input type="file" name="image" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" placeholder="Upload Image">
                                     <span class="input-group-append">
-                            <input type="file" id="myFile" name="image">
+                            <input type="file" name="image">
                           </span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect2">Status</label>
-                                <select class="form-control" id="exampleFormControlSelect2" name="status" >
-                                    <option>True</option>
-                                    <option>False</option>
+                                <select class="form-control" id="exampleFormControlSelect2" name="status" style="color: #6a7293" >
+                                    <option style="color: #babcb1">True</option>
+                                    <option style="color: #babcb1">False</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>

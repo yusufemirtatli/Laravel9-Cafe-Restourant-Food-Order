@@ -11,8 +11,19 @@
                     <div class="card-body">
                         <h4 class="card-title">Category Form</h4>
                         <p class="card-description"> Category Form Details </p>
-                        <form class="forms-sample" action="/admin/category/update/{{$data->id}}" method="get">
+                        <form class="forms-sample" action="/admin/category/update/{{$data->id}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group">
+                                <label>Parent Category</label>
+                                <select class="form-control" name="parent_id" style="color: #6a7293">
+                                    <option value="0" selected="selected" style="color: #babcb1">Main Category</option>
+                                    @foreach($datalist as $rs)
+                                        <option style="color: #babcb1" value="{{$rs->id}}"@if($rs->id==$data->parent_id) selected="selected" @endif>
+                                            {{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Title</label>
                                 <input type="text" style="color: #babcb1" class="form-control" name="title" value="{{$data->title}}">
@@ -23,15 +34,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Description</label>
-                                <input type="text" style="color: #babcb1" class="form-control" name="description" value="{{$data->description}}>
+                                <input type="text" style="color: #babcb1" class="form-control" name="description" value="{{$data->description}}">
                             </div>
                             <div class="form-group">
                                 <label>File upload</label>
-                                <input type="file" name="img[]" class="file-upload-default">
+                                <input type="file" name="image" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" name="image" placeholder="Upload Image">
+                                    <input type="text" name="image" class="form-control file-upload-info" placeholder="Upload Image">
                                     <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            <input type="file" name="image">
                           </span>
                                 </div>
                             </div>
