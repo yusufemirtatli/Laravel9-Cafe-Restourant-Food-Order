@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\AdminProductController;
 use App\Http\Controllers\AdminPanel\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
 use App\Http\Controllers\AdminPanel\CategoryController as AdminCategoryController;
+use App\Http\Controllers\AdminPanel\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,8 +40,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 
-    // **************************** ADMİN category ******************************
+    // **************************** ADMİN CATEGORY ******************************
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
+        Route::get('/','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        Route::get('/show/{id}', 'show')->name('show');
+    });
+    // **************************** ADMİN PRODUCT ******************************
+    Route::prefix('/product')->name('prodcut.')->controller(ProductController::class)->group(function () {
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
         Route::post('/store','store')->name('store');
