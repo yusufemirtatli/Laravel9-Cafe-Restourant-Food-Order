@@ -23,6 +23,7 @@
                                     <th>Id</th>
                                     <th>Keywords</th>
                                     <th>Image</th>
+                                    <th>Image Gallery</th>
                                     <th>Status</th>
                                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edit</th>
                                     <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete</th>
@@ -33,13 +34,17 @@
                                 @foreach($data as $rs)
                                 <tr>
                                     <td>{{$rs->title}}</td>
-                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->category_id)}}</td>
+                                    <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs->category,$rs->category->title)}}</td>
                                     <td>{{$rs->id}}</td>
                                     <td>{{$rs->keywords}}</td>
                                     <td>
                                         @if($rs->image)
                                             <img src="{{Storage::url($rs->image)}}" style="height: 50px;width: 50px">
                                         @endif
+                                    </td>
+                                    <td><a href="{{route('admin.image.index',['pid'=>$rs->id])}}" class="btn btn-rounded btn-inverse-info"
+                                           onclick="return !window.open(this.href,'','top=50 left=100 width=1100 height=700')">
+                                        &nbsp;<img src="{{asset('assets')}}/admin/images/gallery.jpg" style="height: 50px;width: 50px"></a>
                                     </td>
                                     <td>{{$rs->status}}</td>
                                     <td><a href="product/edit/{{$rs->id}}" class="btn btn-primary btn-rounded btn-fw">Edit</a></td>

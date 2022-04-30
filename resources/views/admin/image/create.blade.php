@@ -1,10 +1,7 @@
 @extends('layouts.adminbase')
 
-@section('title','Products Created')
-@section('head')
-    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+@section('title','Category Created')
 
-@endsection
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -12,13 +9,14 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Product Form</h4>
-                        <p class="card-description"> Product Form Details </p>
-                        <form class="forms-sample" action="/admin/product/store" method="post" enctype="multipart/form-data">
+                        <h4 class="card-title">Category Form</h4>
+                        <p class="card-description"> Category Form Details </p>
+                        <form class="forms-sample" action="/admin/category/store" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Parent Category</label>
-                                <select class="form-control" name="category_id" style="color: #6a7293">
+                                <select class="form-control" name="parent_id" style="color: #6a7293">
+                                    <option value="0" selected="selected" style="color: #babcb1">Main Category</option>
                                     @foreach($data as $rs)
                                         <option style="color: #babcb1" value="{{$rs->id}}">{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($rs,$rs->title)}}</option>
                                     @endforeach
@@ -35,25 +33,6 @@
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Description</label>
                                 <input type="text" style="color: #babcb1" class="form-control" name="description" placeholder="Description">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Detail</label>
-                                <textarea style="color: #000000" class="form-control" name="detail" id="detail"></textarea>
-                                <script>
-                                    CKEDITOR.replace( 'detail' );
-                                </script>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Price</label>
-                                <input type="number" style="color: #babcb1" class="form-control" name="price" value="0">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Contents</label>
-                                <input type="text" style="color: #babcb1" class="form-control" name="contents" placeholder="Contents">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Origin</label>
-                                <input type="text" style="color: #babcb1" class="form-control" name="origin" placeholder="Origin">
                             </div>
                             <div class="form-group">
                                 <label>File upload</label>

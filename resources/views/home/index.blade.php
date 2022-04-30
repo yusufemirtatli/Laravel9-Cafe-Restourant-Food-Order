@@ -11,7 +11,6 @@
             <img src="assets/imgs/logo.svg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" class="logo">
             <h1 class="subtitle">Welcome To Our Restaurant</h1>
             <h1 class="title">Really Fresh &amp; Tasty</h1>
-            <a class="btn btn-primary mt-3" href="#book-table">Book A Table</a>
         </div>
     </header>
     <!-- End Of Page Header -->
@@ -26,7 +25,6 @@
                     <p class="mb-1 font-weight-bold">Friday - Saturday : <span class="font-weight-normal pl-2 text-muted">7:00 am - Midnight</span></p>
                     <p class="mb-1 font-weight-bold">Saturday - Sunday : <span class="font-weight-normal pl-2 text-muted">9:00 am - 12:00 pm</span></p>
 
-                    <a href="#book-table" class="btn btn-primary btn-sm w-md mt-4">Book a table</a>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -355,35 +353,6 @@
     <!-- End of Testmonial Section -->
 
 
-    <!-- Book Table Section -->
-    <section id="book-table" class="bg-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 d-none d-md-block">
-                    <img src="assets/imgs/contact.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" class="w-100 rounded shadow">
-                </div>
-                <div class="col-md-6">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" name="phone" placeholder="Your Phone">
-                        </div>
-                        <div class="form-group">
-                            <input type="datetime-local" class="form-control" name="date">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" class="form-control" name="seats" placeholder="Seats">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Book A Table</button>
-                        <small class="form-text text-muted mt-3">We don't span customers. Check our <a href="#">Privacy Policy</a></small>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End OF Book Table Section -->
 
     <!-- Prefooter Section  -->
     <div class="py-4 border border-lighter border-bottom-0 border-left-0 border-right-0 bg-dark">
@@ -394,7 +363,6 @@
                 </div>
                 <div class="col-md-9 text-md-right">
                     <a href="#" class="px-3"><small class="font-weight-bold">Our Company</small></a>
-                    <a href="#" class="px-3"><small class="font-weight-bold">Our Location</small></a>
                     <a href="#" class="px-3"><small class="font-weight-bold">Help Center</small></a>
                     <a href="components.html" class="pl-3"><small class="font-weight-bold">Components</small></a>
                 </div>
