@@ -36,7 +36,7 @@
                                     <td> {{$data->title}} </td>
                                     <td> {{$data->keywords}} </td>
                                     <td> {{$data->description}} </td>
-                                    <td> {{$data->detail}} </td>
+                                    <td> {{!! $data->detail !!}} </td>
                                     <td> {{$data->price}} </td>
                                     <td> {{$data->contents}} </td>
                                     <td> {{$data->origin}} </td>

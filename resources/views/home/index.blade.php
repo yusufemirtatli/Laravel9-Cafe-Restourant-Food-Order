@@ -7,7 +7,7 @@
 @section('content')
     <!-- Page Header -->
     <header class="header">
-        <div class="overlay">
+        <div class="overlay" >
             <img src="assets/imgs/logo.svg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" class="logo">
             <h1 class="subtitle">Welcome To Our Restaurant</h1>
             <h1 class="title">Really Fresh &amp; Tasty</h1>
@@ -58,110 +58,30 @@
         </div>
     </section>
     <!-- End OF About Section -->
-
     <!-- Service Section -->
     <section id="service" class="pattern-style-4 has-overlay">
         <div class="container raise-2">
-            <h6 class="section-subtitle text-center">Featured Food</h6>
             <h3 class="section-title mb-6 pb-3 text-center">Special Dishes</h3>
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <a href="javascrip:void(0)" class="custom-list">
-                        <div class="img-holder">
-                            <img src="assets/imgs/dish-1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        </div>
-                        <div class="info">
-                            <div class="head clearfix">
-                                <h5 class="title float-left">Aperiam incidunt dicta</h5>
-                                <p class="float-right text-primary">$25</p>
+                <div class="row">
+                    @foreach($productlist1 as $rs)
+                    <div class="col-md-6 mb-4">
+                        <a href="javascrip:void(0)" class="custom-list">
+                            <div class="img-holder">
+                                <img src="{{Storage::url($rs->image)}}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
                             </div>
-                            <div class="body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing Eos, earum dicta est veniam beatae libero!</p>
+                            <div class="info">
+                                <div class="head clearfix">
+                                    <h5 class="title float-left">{{$rs->title}}</h5>
+                                    <p class="float-right text-primary">${{$rs->price}}</p>
+                                </div>
+                                <div class="body">
+                                    <p>{{$rs->description}}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    @endforeach
                 </div>
-                <div class="col-md-6 mb-4">
-                    <a href="javascrip:void(0)" class="custom-list">
-                        <div class="img-holder">
-                            <img src="assets/imgs/dish-2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        </div>
-                        <div class="info">
-                            <div class="head clearfix">
-                                <h5 class="title float-left">Facere molestiae quaerat</h5>
-                                <p class="float-right text-primary">$35</p>
-                            </div>
-                            <div class="body">
-                                <p>Voluptatem voluptate ad fugit aliquam, laboriosam neque vero incidunt itaque.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a href="javascrip:void(0)" class="custom-list">
-                        <div class="img-holder">
-                            <img src="assets/imgs/dish-3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        </div>
-                        <div class="info">
-                            <div class="head clearfix">
-                                <h5 class="title float-left">Veniam Beatae Libero</h5>
-                                <p class="float-right text-primary">$18</p>
-                            </div>
-                            <div class="body">
-                                <p>Accusamus libero quo tempore suscipit molestias qui quam illo facere aspernatur esse! Doloribus?</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a href="javascrip:void(0)" class="custom-list">
-                        <div class="img-holder">
-                            <img src="assets/imgs/dish-4.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        </div>
-                        <div class="info">
-                            <div class="head clearfix">
-                                <h5 class="title float-left">Incidunt Eius</h5>
-                                <p class="float-right text-primary">$30</p>
-                            </div>
-                            <div class="body">
-                                <p>Doloremque maiores tempore, nostrum rerum nihil distinctio expedita voluptates eos deserunt.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a href="javascrip:void(0)" class="custom-list">
-                        <div class="img-holder">
-                            <img src="assets/imgs/dish-5.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        </div>
-                        <div class="info">
-                            <div class="head clearfix">
-                                <h5 class="title float-left">Nihil dDstinctio</h5>
-                                <p class="float-right text-primary">$24</p>
-                            </div>
-                            <div class="body">
-                                <p>Doloremque maiores tempore, nostrum rerum expedita incidunt eius voluptates eos deserunt.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a href="javascrip:void(0)" class="custom-list">
-                        <div class="img-holder">
-                            <img src="assets/imgs/dish-6.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        </div>
-                        <div class="info">
-                            <div class="head clearfix">
-                                <h5 class="title float-left">Dignissimos quidem</h5>
-                                <p class="float-right text-primary">$44</p>
-                            </div>
-                            <div class="body">
-                                <p>Doloremque maiores tempore, nostrum rerum nihil distinctio expedita voluptates eos deserunt.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
     <!-- End of Featured Food Section -->
@@ -174,74 +94,21 @@
             <div class="card bg-light">
                 <div class="card-body px-4 pb-4 text-center">
                     <div class="row text-left">
+                        @foreach($productlist1 as $rs)
                         <div class="col-md-6 my-4">
                             <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        Dolorem Exmaiores
-                                        <p class="mt-1 mb-0">Numquam dolor dolores molestiae maiores quidem.</p>
+                                        {{$rs->title}}
+                                        <p class="mt-1 mb-0">{{$rs->detail}}</p>
                                     </div>
-                                    <h6 class="float-right text-primary">$12</h6>
+                                    <h6 class="float-right text-primary">${{$rs->price}}</h6>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-6 my-4">
-                            <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        Aperiam incidunt dicta
-                                        <p class="mt-1 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                    <h6 class="float-right text-primary">$23</h6>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 my-4">
-                            <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        Animi repellat labore
-                                        <p class="mt-1 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                    <h6 class="float-right text-primary">$32</h6>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 my-4">
-                            <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        Quo ipsum similique
-                                        <p class="mt-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                    <h6 class="float-right text-primary">$17</h6>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 my-4">
-                            <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        Est nam tempore
-                                        <p class="mt-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                    <h6 class="float-right text-primary">$21</h6>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 my-4">
-                            <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        Nesciunt ab veniam
-                                        <p class="mt-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                    <h6 class="float-right text-primary">$10</h6>
-                                </div>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
-                    <a href="#book-table" class="btn btn-primary mt-4">Book A Table</a>
+                    <a href="/menu" class="btn btn-primary mt-4">Full Menu</a>
                 </div>
             </div>
         </div>
@@ -370,5 +237,6 @@
         </div>
     </div>
     <!-- End of PreFooter Section -->
+
 @endsection
 

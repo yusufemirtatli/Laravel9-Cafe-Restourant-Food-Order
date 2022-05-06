@@ -7,9 +7,12 @@
     <meta name="author" content="Devcrud">
     <title>@yield("title")</title>
     <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/assets/vendors/themify-icons/css/themify-icons.css">
     <!-- Bootstrap + Pigga main styles -->
-    <link rel="stylesheet" href="assets/css/pigga.css">
+    <link rel="stylesheet" href="/assets/css/pigga.css">
+<!--  <link rel="stylesheet" href="assets/css/style.css"> -->
+<!--    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+    <link rel="stylesheet" href="/assets/js/main.js">
     @yield("head")
 
 </head>

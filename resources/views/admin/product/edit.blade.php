@@ -1,7 +1,10 @@
 @extends('layouts.adminbase')
 
 @section('title','Edit Product')
+@section('head')
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 
+@endsection
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -37,8 +40,10 @@
                             </div>
                             <div class="form-group" >
                                 <label for="exampleInputUsername1">Detail</label>
-                                <textarea style="color: #babcb1" class="form-control" name="detail">{{$data->detail}}
-                                </textarea>
+                                <textarea style="color: #babcb1" class="form-control" name="detail" id="detail">{{$data->detail}}</textarea>
+                                <script>
+                                    CKEDITOR.replace( 'detail' );
+                                </script>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Price</label>
