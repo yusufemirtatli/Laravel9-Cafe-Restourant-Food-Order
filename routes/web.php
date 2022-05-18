@@ -51,9 +51,12 @@ Route::get('/22','juicydishes')->name('juicydishes');
 
 
 // **************************** ADMİN PANEL *********************************
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminHomeController::class, 'index'])->name('index');
 
+// **************************** ADMİN GENERAL SETTİNG ******************************
+    Route::get('/setting', [AdminHomeController::class, 'setting'])->name('setting');
+    Route::post('/setting', [AdminHomeController::class, 'settingupdate'])->name('setting.update');
     // **************************** ADMİN CATEGORY ******************************
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
         Route::get('/','index')->name('index');
@@ -64,6 +67,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
         Route::get('/show/{id}', 'show')->name('show');
     });
+
     // **************************** ADMİN PRODUCT ******************************
     Route::prefix('/product')->name('prodcut.')->controller(ProductController::class)->group(function () {
         Route::get('/','index')->name('index');
@@ -74,6 +78,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
         Route::get('/show/{id}', 'show')->name('show');
     });
+
     // **************************** ADMİN PRODUCT IMAGE GALLERY ******************************
     Route::prefix('/image')->name('image.')->controller(ImageController::class)->group(function () {
         Route::get('/{pid}','index')->name('index');
@@ -81,4 +86,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store/{pid}','store')->name('store');
         Route::get('/destroy/{pid}/{id}', 'destroy')->name('destroy');
     });
+
 });
