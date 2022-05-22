@@ -25,13 +25,12 @@ Route::get('/laravel', function () {
 
 Route::get('/',[HomeController::class,'index']);
 
-Route::get('/about',[HomeController::class,'about']);
 
 Route::get('/deneme',[HomeController::class,'deneme']);
 
 Route::get('/test.blade.php',[HomeController::class,'test']);
 
-Route::redirect('/hakkımızda','/about');
+//Route::redirect('/hakkımızda','/about');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -56,7 +55,7 @@ Route::get('/22','juicydishes')->name('juicydishes');
 
 // **************************** ADMİN GENERAL SETTİNG ******************************
     Route::get('/setting', [AdminHomeController::class, 'setting'])->name('setting');
-    Route::post('/setting', [AdminHomeController::class, 'settingupdate'])->name('setting.update');
+    Route::post('/setting', [AdminHomeController::class, 'settingUpdate'])->name('setting.update');
     // **************************** ADMİN CATEGORY ******************************
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
         Route::get('/','index')->name('index');

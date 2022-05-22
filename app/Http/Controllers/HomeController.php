@@ -4,24 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $page='home';
         $sliderdata=Product::limit(4)->get();
         $productlist1=Product::limit(6)->get();
+        $setting = Setting::first();
+
         return view('home.index',[
+            'page'=>$page,
+            'setting'=>$setting,
         'sliderdata'=>$sliderdata,
         'productlist1'=>$productlist1
 
             ]);
     }
 
-    public function about()
+    public function aboutus()
     {
-        return view('home.about');
+        $setting = Setting::first();
+        return view('home.index',[
+            'setting'=>$setting,
+        ]);
     }
 
     public function deneme()

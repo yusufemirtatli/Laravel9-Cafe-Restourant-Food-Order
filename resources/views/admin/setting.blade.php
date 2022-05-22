@@ -2,6 +2,8 @@
 
 @section('title','Admin Panel')
 
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+
 
 
 @section('content')
@@ -15,11 +17,10 @@
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Setting Elements </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="">
-                            <a class="dropdown-item" href="#smtps">Smtp</a>
-                            <a class="dropdown-item" href="#facebook">Social Media</a>
-                            <a class="dropdown-item" href="#aboutus">About us</a>
-                            <a class="dropdown-item" href="#contact">Contact Page</a>
-                            <a class="dropdown-item" href="#referances">Referances</a>
+                            <a class="dropdown-item" href="#fax">Smtp</a>
+                            <a class="dropdown-item" href="#smtppassword">Social Media</a>
+                            <a class="dropdown-item" href="#twitter">About Us And Others</a>
+                            <a class="dropdown-item" href="#icon">İcon And Status</a>
                         </div>
                         <div class="card-body">
                             <input type="hidden" id="id" name="id" value="{{$data->id}}" class="form-control">
@@ -92,31 +93,49 @@
                             <div class="dropdown-divider"></div>
                             <div class="form-group">
                                 <label>About Us</label>
-                                <input type="text" style="color: #babcb1" id="aboutus" class="form-control" name="aboutus" value="{{$data->aboutus}}">
+                                <textarea id="aboutus" name="aboutus" class="form-control" >{{$data->aboutus}}
+
+                                </textarea>
+                                <script>
+                                    CKEDITOR.replace( 'aboutus' );
+                                </script>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="form-group">
                                 <label>Contact</label>
-                                <input type="text" style="color: #babcb1" id="contact" class="form-control" name="contact" value="{{$data->contact}}">
+                                <textarea id="contact" name="contact" class="form-control" >{{$data->contact}}
+
+                                </textarea>
+                                <script>
+                                    CKEDITOR.replace( 'contact' );
+                                </script>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="form-group">
                                 <label>Referances</label>
-                                <input type="text" style="color: #babcb1" id="referances" class="form-control" name="referances" value="{{$data->referances}}">
+                                <textarea id="references" name="references" class="form-control" >{{$data->references}}
+
+                                </textarea>
+                                <script>
+                                    CKEDITOR.replace( 'references' );
+                                </script>
                             </div>
                             <div class="dropdown-divider"></div>
                             <div class="form-group">
                                 <label>Icon</label>
-                                <input type="file" name="icon" class="file-upload-default">
+                                <input type="file" id="icon" name="icon" class="file-upload-default">
                                 <div class="input-group col-xs-12">
                                     <span class="input-group-append">
-                            <input type="file" name="image">
+                            <input type="file" name="icon">
                           </span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Status</label>
-                                <input type="text" style="color: #babcb1" id="status" class="form-control" name="status" value="{{$data->status}}">
+                                <label for="exampleFormControlSelect2">Status</label>
+                                <select class="form-control" id="exampleFormControlSelect2" name="status" style="color: #6a7293" >
+                                    <option style="color: #babcb1">True</option>
+                                    <option style="color: #babcb1">False</option>
+                                </select>
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -130,34 +149,3 @@
             </div>
         </div>
 @endsection
-    <!--
-        <form class="forms-sample" action="}" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                @csrf
-                <label>General</label>
-                <input type="text" style="color: #babcb1" class="form-control" name="genera" placeholder="Genera">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputUsername1">Smtp Email</label>
-                <input type="text" style="color: #babcb1" class="form-control" name="smtpemail" placeholder="SmtpEmail">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputUsername1">Social Media</label>
-                <input type="text" style="color: #babcb1" class="form-control" name="social" placeholder="Social">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputUsername1">About Us</label>
-                <input type="text" style="color: #babcb1" class="form-control" name="aboutus" placeholder="AboutUs">
-            </div>
-            <div class="form-group">
-                <label>Contact Page</label>
-                <input type="text" style="color: #babcb1" class="form-control" name="cpage" placeholder="CPage">
-            </div>
-            <div class="form-group">
-                <label>Referances</label>
-                <input type="text" style="color: #babcb1" class="form-control" name="referances" placeholder="Referances">
-            </div>
-            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-            <button class="btn btn-dark">Cancel</button>
-        </form>
- -->

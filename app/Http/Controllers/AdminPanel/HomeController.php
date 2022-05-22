@@ -19,9 +19,9 @@ class HomeController extends Controller
          if ($data==null)
          {
              $data = new Setting();
-             $data->title='Project Title';
+             $data->title = 'Project Title';
              $data->save();
-             $data=Setting::first();
+             $data = Setting::first();
          }
         return view("admin.setting",['data'=>$data]);
     }
@@ -50,7 +50,7 @@ class HomeController extends Controller
         $data->contact = $request->input('contact');
         $data->references = $request->input('references');
         if ($request->file('icon')){
-            $data->image=$request->file('icon')->store('images');
+            $data->icon=$request->file('icon')->store('images');
         }
         $data->status = $request->input('status');
         $data->save();

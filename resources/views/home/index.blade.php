@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
-@section('title','Restorant Project')
+@section('title',$setting->title)
+@section('description',$setting->description)
+@section('keywords',$setting->keywords)
+@section('author',$setting->author)
+@section('icon',Storage::url($setting->icon))
+
 
 
 
@@ -15,48 +20,33 @@
     </header>
     <!-- End Of Page Header -->
     <!-- About Section -->
-    <section id="about">
+    <section class="has-img-bg">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h6 class="section-subtitle">Opening Times</h6>
-                    <h3 class="section-title">Working Times</h3>
-                    <p class="mb-1 font-weight-bold">Monday - Thursday : <span class="font-weight-normal pl-2 text-muted">7:00 am - 12:00 pm</span></p>
-                    <p class="mb-1 font-weight-bold">Friday - Saturday : <span class="font-weight-normal pl-2 text-muted">7:00 am - Midnight</span></p>
-                    <p class="mb-1 font-weight-bold">Saturday - Sunday : <span class="font-weight-normal pl-2 text-muted">9:00 am - 12:00 pm</span></p>
-
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col">
-                            <img alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" src="assets/imgs/about-1.jpg" class="w-100 rounded shadow">
-                        </div>
-                        <div class="col">
-                            <img alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" src="assets/imgs/about-2.jpg" class="w-100 rounded shadow">
-                        </div>
+            <h6 class="section-subtitle text-center">Great Food</h6>
+            <h3 class="section-title mb-6 text-center">Main Menu</h3>
+            <div class="card bg-light">
+                <div class="card-body px-4 pb-4 text-center">
+                    <div class="row text-left">
+                        @foreach($productlist1 as $rs)
+                            <div class="col-md-6 my-4">
+                                <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            {{$rs->title}}
+                                            <p class="mt-1 mb-0">{{$rs->detail}}</p>
+                                        </div>
+                                        <h6 class="float-right text-primary">${{$rs->price}}</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-                </div>
-            </div>
-            <div class="section-devider my-6 transparent"></div>
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h6 class="section-subtitle">The Great Story</h6>
-                    <h3 class="section-title">Our Culinary Journey</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic illo a, aut, eum nesciunt obcaecati deserunt ipsam nostrum voluptate recusandae?</p>
-                </div>
-                <div class="col-md-6 order-1 order-sm-first">
-                    <div class="row">
-                        <div class="col">
-                            <img alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" src="assets/imgs/about-3.jpg" class="w-100 rounded shadow">
-                        </div>
-                        <div class="col">
-                            <img alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page" src="assets/imgs/about-4.jpg" class="w-100 rounded shadow">
-                        </div>
-                    </div>
+                    <a href="/menu" class="btn btn-primary mt-4">Full Menu</a>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- End OF About Section -->
     <!-- Service Section -->
     <section id="service" class="pattern-style-4 has-overlay">
@@ -87,32 +77,42 @@
     <!-- End of Featured Food Section -->
 
     <!-- Menu Section -->
-    <section class="has-img-bg">
+    <section id="about" class="has-img-bg" >
         <div class="container">
-            <h6 class="section-subtitle text-center">Great Food</h6>
-            <h3 class="section-title mb-6 text-center">Main Menu</h3>
             <div class="card bg-light">
-                <div class="card-body px-4 pb-4 text-center">
-                    <div class="row text-left">
-                        @foreach($productlist1 as $rs)
-                        <div class="col-md-6 my-4">
-                            <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        {{$rs->title}}
-                                        <p class="mt-1 mb-0">{{$rs->detail}}</p>
-                                    </div>
-                                    <h6 class="float-right text-primary">${{$rs->price}}</h6>
-                                </div>
-                            </a>
+                <div class="card-body px-4 pb-4" style="color: #0a0a0a">
+                    <h1><b> About Us </b></h1>
+
+                    {!! $setting->aboutus !!}
+                    <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; References </b></h1>
+                    {!! $setting->references !!}
+                    <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Contact </b></h1>
+                    {!! $setting->contact !!}
+                </div>
+            </div>
+            <div class="card bg-light" style="margin-top: 20px">
+                <div class="card-body px-4 pb-4 text-center" style="color: #0a0a0a">
+                    <form>
+                        <h1><b> Contact Form </b></h1>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Name">
                         </div>
-                        @endforeach
-                    </div>
-                    <a href="/menu" class="btn btn-primary mt-4">Full Menu</a>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" name="phone" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="Your E-mail">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Send Form</button>
+                        <small class="form-text text-muted mt-3">We don't span customers. Check our <a href="#">Privacy Policy</a></small>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- End of Menu Section -->
 
     <!-- Team Section -->
