@@ -8,7 +8,7 @@
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
-            <h1>Add Category</h1>
+            <h1>Add Product</h1>
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">

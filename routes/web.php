@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminPanel\AdminProductController;
 use App\Http\Controllers\AdminPanel\CategoryController;
+use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\ImageController;
+use App\Http\Controllers\AdminPanel\MessageController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminPanel\HomeController as AdminHomeController;
@@ -23,14 +25,10 @@ Route::get('/laravel', function () {
     return view('welcome');
 });
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/',[HomeController::class,'index'])->name('index');
+Route::get('/productdetail/{id}',[HomeController::class,'productdetail'])->name('productdetail');
 
 
-Route::get('/deneme',[HomeController::class,'deneme']);
-
-Route::get('/test.blade.php',[HomeController::class,'test']);
-
-//Route::redirect('/hakkımızda','/about');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -39,14 +37,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //********************************** MENU *************************************
     Route::prefix('menu')->name('menu.')->controller(HomeController::class)->group(function (){
 Route::get('/',[HomeController::class,'menu'])->name('menu');
-Route::get('/5','hotdrinks')->name('hotdrinks');
-Route::get('/6','colddrinks')->name('colddrinks');
-Route::get('/8','frontcolds')->name('frontcolds');
-Route::get('/9','mainfoods')->name('mainfoods');
-Route::get('/11','deserts')->name('deserts');
-Route::get('/21','drills')->name('drills');
-Route::get('/22','juicydishes')->name('juicydishes');
+Route::get('/{id}','products')->name('products');
+Route::get('/{id}/productdetail','productdetail')->name('productdetail');
+
+
 });
+
+//**************************** HOME PAGE ROUTES ****************************
+Route::post('/storemessage',[HomeController::class,'storemessage'])->name('storemessage');
+Route::post('/storecomment',[HomeController::class,'storecomment'])->name('storecomment');
+
 
 
 // **************************** ADMİN PANEL *********************************
@@ -56,6 +56,7 @@ Route::get('/22','juicydishes')->name('juicydishes');
 // **************************** ADMİN GENERAL SETTİNG ******************************
     Route::get('/setting', [AdminHomeController::class, 'setting'])->name('setting');
     Route::post('/setting', [AdminHomeController::class, 'settingUpdate'])->name('setting.update');
+
     // **************************** ADMİN CATEGORY ******************************
     Route::prefix('/category')->name('category.')->controller(AdminCategoryController::class)->group(function () {
         Route::get('/','index')->name('index');
@@ -85,5 +86,24 @@ Route::get('/22','juicydishes')->name('juicydishes');
         Route::post('/store/{pid}','store')->name('store');
         Route::get('/destroy/{pid}/{id}', 'destroy')->name('destroy');
     });
+
+        // **************************** ADMİN MESSAGE ROUTES ******************************
+        Route::prefix('/message')->name('message.')->controller(MessageController::class)->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/show/{id}','show')->name('show');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        // **************************** ADMİN FAQ ROUTES ******************************
+        Route::prefix('/faq')->name('faq.')->controller(FaqController::class)->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/create','create')->name('create');
+            Route::post('/store','store')->name('store');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::post('/update/{id}', 'update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
+            Route::get('/show/{id}', 'show')->name('show');
+        });
 
 });

@@ -1,6 +1,6 @@
 @extends('layouts.adminbase')
 
-@section('title','Admin Panel')
+@section('title','Admin')
 
 
 
@@ -8,5 +8,8 @@
     <div class="main-panel">
         <div class="content-wrapper">
 
+
+
         </div>
+
 @endsection

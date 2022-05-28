@@ -9,34 +9,32 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <section id="team">
         <div class="container">
-            <h3 class="section-title mb-5 text-center">Sulu Yemekler</h3>
+            <h3 class="section-title mb-5 text-center">{{$category->title}}</h3>
             <div class="row">
 
                 <div class="container raise-2">
                     <div class="row">
                         @foreach($productlist1 as $rs)
-                            @if($rs->category_id == 22)
-                                <div class="col-md-6 mb-4">
-                                    <a href="javascrip:void(0)" class="custom-list">
-                                        <div class="img-holder">
-                                            <img src="{{Storage::url($rs->image)}}">
+                            <div class="col-md-6 mb-4">
+                                <a href="/productdetail/{{$rs->id}}" class="custom-list">
+                                    <div class="img-holder">
+                                        <img src="{{Storage::url($rs->image)}}">
+                                    </div>
+                                    <div class="info">
+                                        <div class="head clearfix">
+                                            <h5 class="title float-left">{{$rs->title}}</h5>
+                                            <p class="float-right text-primary">${{$rs->price}}</p>
                                         </div>
-                                        <div class="info">
-                                            <div class="head clearfix">
-                                                <h5 class="title float-left">{{$rs->title}}</h5>
-                                                <p class="float-right text-primary">${{$rs->price}}</p>
-                                            </div>
-                                            <div class="body">
-                                            <span class="menu-icon float-right">
+                                        <div class="body">
+                                            <span class="menu-icon">
 
                                                <img src="/assets/imgs/add.png" class="icon float-right" width="25" height="25">
                                             </span>
-                                                <p>{{$rs->description}}</p>
-                                            </div>
+                                            <p>{{$rs->description}}</p>
                                         </div>
-                                    </a>
-                                </div>
-                            @endif
+                                    </div>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>

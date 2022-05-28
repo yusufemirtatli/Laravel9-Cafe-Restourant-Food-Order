@@ -16,7 +16,7 @@
                 <div class="col-md-4 my-3">
                     <a href="/menu/{{$rs->id}}">
                     <div class="team-wrapper text-center">
-                        <img src="{{Storage::url($rs->image)}}" class="circle-120 rounded-circle mb-3 shadow" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
+                        <img src="{{Storage::url($rs->image)}}" class="circle-120 rounded-circle mb-3 shadow">
                         <h5 class="my-3">{{$rs->title}}</h5>
                     </div>
                     </a>

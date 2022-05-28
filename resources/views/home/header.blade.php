@@ -10,19 +10,19 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/#menu">Menu</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/#about">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#service">Our Service</a>
+                    <a class="nav-link" href="/#contactf">Contact Form</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#team">Our Team</a>
+                    <a class="nav-link" href="/#service">Specilals</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#testmonial">Testmonials</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/menu">Menu</a>
+                    <a class="nav-link" href="/#faq">FAQ</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

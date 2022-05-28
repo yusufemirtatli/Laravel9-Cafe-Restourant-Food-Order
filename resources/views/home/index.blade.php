@@ -1,10 +1,75 @@
 @extends('layouts.main')
+<style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
 
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+    .rate:not(:checked) > input {
+        position:absolute;
+        top:-9999px;
+    }
+    .rate:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+    }
+    .rate:not(:checked) > label:before {
+        content: '★ ';
+    }
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+
+</style>
 @section('title',$setting->title)
 @section('description',$setting->description)
 @section('keywords',$setting->keywords)
 @section('author',$setting->author)
 @section('icon',Storage::url($setting->icon))
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -20,7 +85,7 @@
     </header>
     <!-- End Of Page Header -->
     <!-- About Section -->
-    <section class="has-img-bg">
+    <section class="has-img-bg" id="menu">
         <div class="container">
             <h6 class="section-subtitle text-center">Great Food</h6>
             <h3 class="section-title mb-6 text-center">Main Menu</h3>
@@ -28,14 +93,22 @@
                 <div class="card-body px-4 pb-4 text-center">
                     <div class="row text-left">
                         @foreach($productlist1 as $rs)
-                            <div class="col-md-6 my-4">
-                                <a href="#" class="pb-3 mx-3 d-block text-dark text-decoration-none border border-left-0 border-top-0 border-right-0">
-                                    <div class="d-flex">
-                                        <div class="flex-grow-1">
-                                            {{$rs->title}}
-                                            <p class="mt-1 mb-0">{{$rs->detail}}</p>
+                            <div class="col-md-6 mb-4">
+                                <a class="custom-list" href="">
+                                    <div class="img-holder">
+                                        <img src="{{Storage::url($rs->image)}}">
+                                    </div>
+                                    <div class="info">
+                                        <div class="head clearfix">
+                                            <h5 class="title float-left" style="color: #0a0a0a">{{$rs->title}}</h5>
+                                            <p class="float-right text-primary">${{$rs->price}}</p>
                                         </div>
-                                        <h6 class="float-right text-primary">${{$rs->price}}</h6>
+                                        <div class="body">
+                                            <span class="menu-icon">
+                                               <img src="/assets/imgs/add.png" class="icon float-right" width="25" height="25">
+                                            </span>
+                                            <p style="color: #4a4848">{{$rs->description}}</p>
+                                        </div>
                                     </div>
                                 </a>
                             </div>
@@ -46,14 +119,13 @@
             </div>
         </div>
     </section>
-
     <!-- End OF About Section -->
     <!-- Service Section -->
     <section id="service" class="pattern-style-4 has-overlay">
         <div class="container raise-2">
             <h3 class="section-title mb-6 pb-3 text-center">Special Dishes</h3>
-                <div class="row">
-                    @foreach($productlist1 as $rs)
+            <div class="row">
+                @foreach($productlist1 as $rs)
                     <div class="col-md-6 mb-4">
                         <a href="javascrip:void(0)" class="custom-list">
                             <div class="img-holder">
@@ -70,40 +142,44 @@
                             </div>
                         </a>
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
+            </div>
         </div>
     </section>
     <!-- End of Featured Food Section -->
-
     <!-- Menu Section -->
     <section id="about" class="has-img-bg" >
         <div class="container">
             <div class="card bg-light">
                 <div class="card-body px-4 pb-4" style="color: #0a0a0a">
-                    <h1><b> About Us </b></h1>
-
+                    <h1 class="text-center"><b>About Us </b></h1>
                     {!! $setting->aboutus !!}
-                    <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; References </b></h1>
+                    <h1 class="text-center"><b> References </b></h1>
                     {!! $setting->references !!}
-                    <h1><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Contact </b></h1>
+                    <h1 class="text-center"><b>Contact </b></h1>
                     {!! $setting->contact !!}
                 </div>
             </div>
-            <div class="card bg-light" style="margin-top: 20px">
+            <div class="card bg-light" style="margin-top: 20px" id="contactf">
                 <div class="card-body px-4 pb-4 text-center" style="color: #0a0a0a">
-                    <form>
+                    @include('home.messages')
+                    <form id="form" name="form" action="{{route("storemessage")}}" class="clearfix" method="post">
+                        @csrf
                         <h1><b> Contact Form </b></h1>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Name">
+                            <input type="text" class="form-control" name="name" placeholder="Your Name">
                         </div>
                         <div class="form-group">
                             <input type="tel" class="form-control" name="phone" placeholder="Your Phone">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="email" placeholder="Your E-mail">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="input-group-append form-control" type="text" name="message" placeholder="Your Message"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Send Form</button>
                         <small class="form-text text-muted mt-3">We don't span customers. Check our <a href="#">Privacy Policy</a></small>
@@ -112,64 +188,31 @@
             </div>
         </div>
     </section>
-
     <!-- End of Menu Section -->
-
-    <!-- Team Section -->
-    <section id="team">
-        <div class="container">
-            <h6 class="section-subtitle text-center">Great Team</h6>
-            <h3 class="section-title mb-5 text-center">Talented Chefs</h3>
+    <section id="faq" class="pattern-style-4 has-overlay">
+        <div class="container raise-2">
+            <h1 class="section-title mb-6 pb-3 text-center">FAQ</h1>
             <div class="row">
-                <div class="col-md-4 my-3">
-                    <div class="team-wrapper text-center">
-                        <img src="assets/imgs/chef-1.jpg" class="circle-120 rounded-circle mb-3 shadow" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        <h5 class="my-3">Brian Scott</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente suscipit, odio nulla reiciendis!</p>
-                        <h6 class="socials mt-3">
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-facebook"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-twitter"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-instagram"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-google"></i></a>
-                        </h6>
+                @foreach($datalist as $rs)
+
+                    <div class="col-md-4 my-3 my-md-0">
+                        <div class="card bg-dark" style="margin-top: 45px">
+                            <div class="card-body">
+                                <button class="accordion bg-dark " style="color: #cbc9c9"><h5>{{$rs->questions}}</h5></button>
+                                <div class="panel bg-dark">
+                                    <p style="color:#FFFFFF">{!! $rs->answer !!}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 my-3">
-                    <div class="team-wrapper text-center">
-                        <img src="assets/imgs/chef-2.jpg" class="circle-120 rounded-circle mb-3 shadow" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        <h5 class="my-3">Edward Harris</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente suscipit, odio nulla reiciendis!</p>
-                        <h6 class="socials mt-3">
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-facebook"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-twitter"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-instagram"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-google"></i></a>
-                        </h6>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3">
-                    <div class="team-wrapper text-center">
-                        <img src="assets/imgs/chef-3.jpg" class="circle-120 rounded-circle mb-3 shadow" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                        <h5 class="my-3">Richard Reb</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente suscipit, odio nulla reiciendis!</p>
-                        <h6 class="socials mt-3">
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-facebook"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-twitter"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-instagram"></i></a>
-                            <a href="javascript:void(0)" class="px-2"><i class="ti-google"></i></a>
-                        </h6>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-    <!-- End of Team Section -->
 
-    <!-- Testmonial Section -->
-    <section id="testmonial" class="pattern-style-3">
+    <section id="review" class="pattern-style-3">
         <div class="container">
-            <h6 class="section-subtitle text-center">Best Clients</h6>
-            <h3 class="section-title mb-5 text-center">Testmonials</h3>
+            <h1 class="section-title mb-5 text-center">Reviews</h1>
 
             <div class="row">
                 <div class="col-md-4 my-3 my-md-0">
@@ -181,33 +224,8 @@
                                     <h6 class="mt-1 mb-0">John Doe</h6>
                                     <small class="text-muted mb-0">Business Analyst</small>
                                 </div>
-                            </div>
-                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim modi, id dicta reiciendis itaque.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media align-items-center mb-3">
-                                <img class="mr-3" src="assets/imgs/avatar-1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                                <div class="media-body">
-                                    <h6 class="mt-1 mb-0">Maria Garcia</h6>
-                                    <small class="text-muted mb-0">Insurance Agent</small>
-                                </div>
-                            </div>
-                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim modi, id dicta reiciendis itaque.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media align-items-center mb-3">
-                                <img class="mr-3" src="assets/imgs/avatar-2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
-                                <div class="media-body">
-                                    <h6 class="mt-1 mb-0">Mason Miller</h6>
-                                    <small class="text-muted mb-0">Residential Appraiser</small>
+                                <div class="media"> sasasas
+
                                 </div>
                             </div>
                             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim modi, id dicta reiciendis itaque.</p>
@@ -216,11 +234,51 @@
                 </div>
             </div>
         </div>
+
+        <div class="section-devider my-6 transparent"></div>
+
+            <div class="container">
+                <div class="card">
+                    <div class="card-body px-4 pb-4 text-center">
+                        <h1><b>Write Your Review</b></h1>
+                        <form class="form-sample" id="review" action="{{route('storecomment')}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label>Select Your Product</label>
+                                <select class="custom-select" name="product_id">
+                                    @foreach($data as $rs)
+                                        <option value="{{$rs->id}}">{{$rs->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="subject" placeholder="Subject">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="input form-control" placeholder="review" name="review" aria-placeholder="Your Comment"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <strong style="margin-top: 10px" class="text-uppercase ">Your Rating :   </strong>
+                                    <div class="rate text-center">
+                                        <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                                        <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                                        <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                                        <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                                        <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            @auth
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                            @else
+                                <a href="/login" class="btn btn-primary">Please Login</a>
+                            @endauth
+                        </form>
+                    </div>
+                </div>
+            </div>
     </section>
-    <!-- End of Testmonial Section -->
-
-
-
     <!-- Prefooter Section  -->
     <div class="py-4 border border-lighter border-bottom-0 border-left-0 border-right-0 bg-dark">
         <div class="container">
@@ -237,6 +295,21 @@
         </div>
     </div>
     <!-- End of PreFooter Section -->
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
 @endsection
 

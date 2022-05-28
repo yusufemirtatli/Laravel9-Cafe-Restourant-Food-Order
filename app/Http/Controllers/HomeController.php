@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Faq;
+use App\Models\Message;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,13 +20,16 @@ class HomeController extends Controller
         $sliderdata=Product::limit(4)->get();
         $productlist1=Product::limit(6)->get();
         $setting = Setting::first();
+        $datalist = Faq::all();
+        $data = Product::all();
 
         return view('home.index',[
             'page'=>$page,
             'setting'=>$setting,
-        'sliderdata'=>$sliderdata,
-        'productlist1'=>$productlist1
-
+            'sliderdata'=>$sliderdata,
+            'productlist1'=>$productlist1,
+            'datalist'=>$datalist,
+            'data'=>$data
             ]);
     }
 
@@ -31,6 +39,20 @@ class HomeController extends Controller
         return view('home.index',[
             'setting'=>$setting,
         ]);
+    }
+
+    public function storemessage(Request $request)
+    {
+        $data = new Message();
+        $data->name = $request->input('name');
+        $data->email = $request->input('email');
+        $data->phone = $request->input('phone');
+        $data->subject = $request->input('subject');
+        $data->message = $request->input('message');
+        $data->ip=request()->ip();
+        $data->save();
+
+        return redirect()->route('index')->with('info','Your message has been sent,Thank you.');
     }
 
     public function deneme()
@@ -54,55 +76,57 @@ class HomeController extends Controller
         ]);
         $data->parent_id = $request->parent_id;
     }
-    public function hotdrinks()
+    public function products($id)
     {
-        $productlist1=Product::all();
-        return view('home.menu.hotdrinks',[
-            'productlist1'=>$productlist1
-        ]);
-    }
-    public function colddrinks()
-    {
-        $productlist1=Product::all();
-        return view('home.menu.colddrinks',[
-            'productlist1'=>$productlist1
-        ]);
-    }
-    public function frontcolds()
-    {
-        $productlist1=Product::all();
-        return view('home.menu.frontcolds',[
-            'productlist1'=>$productlist1
-        ]);
-    }
-    public function mainfoods()
-    {
-        $data= Category::all();
-        return view('home.menu.mainfoods',[
-            'data' => $data
 
+        $data = Category::find($id);
+        $category = Category::find($id);
+        $productlist1 = DB::table('products')->where('category_id', $id)->get();
+        return view('home.menu.products',[
+            'productlist1'=>$productlist1,
+            'category'=>$category,
+            'data'=>$data
+        ]);
+    }
+    public function productdetail($id)
+    {
+        $data = Product::find($id);
+        $productlist1 = DB::table('products')->where('category_id', $id)->get();
+
+        return view('home.menu.productdetail',[
+            'data'=>$data,
+            'productlist1'=>$productlist1,
 
         ]);
     }
-    public function deserts()
+    public function faq()
     {
-        $productlist1=Product::all();
-        return view('home.menu.deserts',[
-            'productlist1'=>$productlist1
+        $datalist = Faq::all();
+        return view('home.index',[
+            'datalist'=>$datalist
         ]);
     }
-    public function drills()
+    public function storecomment(Request $request)
     {
-        $productlist1=Product::all();
-        return view('home.menu.drills',[
-            'productlist1'=>$productlist1
+        $data = new Comment();
+        $data->user_id = Auth::id();
+        $data->product_id = $request->input('product_id');
+        $data->subject = $request->input('subject');
+        $data->review = $request->input('review');
+        $data->ip=request()->ip();
+        $data->rate = $request->input('rate');
+        $data->save();
+        $setting = Setting::first();
+        $productlist1=Product::limit(6)->get();
+        $datalist = Faq::all();
+        $datas = Product::all();
+        return view('home.index',[
+            'data'=>$data,
+            'setting'=>$setting,
+            'productlist1'=>$productlist1,
+            'datalist'=>$datalist,
+            'datas'=>$datas
         ]);
     }
-    public function juicydishes()
-    {
-        $productlist1=Product::all();
-        return view('home.menu.juicydishes',[
-            'productlist1'=>$productlist1
-        ]);
-    }
+
 }

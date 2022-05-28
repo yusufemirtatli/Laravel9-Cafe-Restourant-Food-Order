@@ -12,45 +12,64 @@
                         <h4 class="card-title">Datas</h4>
                         <div class="table-responsive" style="">
                             <table class="table table-bordered">
-                                <thead>
+                                <tbody>
                                 <tr>
-                                    <th style="width: 40px"> Id </th>
-                                    <th style="width: 40px"> Category </th>
-                                    <th style="width: 40px"> Title </th>
-                                    <th style="width: 40px"> Keywords </th>
-                                    <th style="width: 40px"> Description </th>
-                                    <th style="width: 40px"> Detail </th>
-                                    <th style="width: 40px"> Price </th>
-                                    <th style="width: 40px"> Contents </th>
-                                    <th style="width: 40px"> Origin </th>
-                                    <th style="width: 40px"> Images </th>
-                                    <th style="width: 40px"> Status </th>
-                                    <th style="width: 40px"> Created Date </th>
-                                    <th style="width: 40px"> Updated Date </th>
+                                    <th style="width: 100px">Id</th>
+                                    <td>{{$data->id}}</td>
                                 </tr>
-                                </thead>
-                                <tbody >
                                 <tr>
-                                    <td> {{$data->id}} </td>
+                                    <th style="width: 100px">Category</th>
                                     <td>{{\App\Http\Controllers\AdminPanel\CategoryController::getParentsTree($data->category,$data->category->title)}}</td>
-                                    <td> {{$data->title}} </td>
-                                    <td> {{$data->keywords}} </td>
-                                    <td> {{$data->description}} </td>
-                                    <td> {{!! $data->detail !!}} </td>
-                                    <td> {{$data->price}} </td>
-                                    <td> {{$data->contents}} </td>
-                                    <td> {{$data->origin}} </td>
-                                    <td>
-                                        @if($data->image)
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Title</th>
+                                    <td>{{$data->title}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Keywords</th>
+                                    <td>{{$data->keywords}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Description</th>
+                                    <td>{{$data->description}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Detail</th>
+                                    <td>{{$data->detail}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Price</th>
+                                    <td>{{$data->price}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Contents</th>
+                                    <td>{{$data->contents}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Origin</th>
+                                    <td>{{$data->origin}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Images</th>
+                                    <td> @if($data->image)
                                             <img src="{{Storage::url($data->image)}}" style="height: 50px;width: 50px">
-                                        @endif
-                                    </td>
-                                    <td> {{$data->status}} </td>
-                                    <td> {{$data->created_at}} </td>
-                                    <td> {{$data->updated_at}} </td>
+                                        @endif</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Status</th>
+                                    <td>{{$data->status}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Created Date</th>
+                                    <td>{{$data->created_at}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 100px">Updated Date</th>
+                                    <td>{{$data->updated_at}}</td>
                                 </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

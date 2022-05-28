@@ -1,16 +1,15 @@
 @extends('layouts.adminbase')
 
-@section('title','Show Category')
+@section('title','Show FAQ')
 
 @section('content')
-    <div class="main-panel">
+    <div class="main-panel" >
         <div class="content-wrapper">
-            <h1>Show {{$data->title}} Data</h1>
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h4 class="card-title">Datas</h4>
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="">
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
@@ -18,23 +17,12 @@
                                     <td>{{$data->id}}</td>
                                 </tr>
                                 <tr>
-                                    <th style="width: 100px">Title</th>
-                                    <td>{{$data->title}}</td>
+                                    <th style="width: 100px ; color: #ff3126">Question</th>
+                                    <td style="color: #ff3126">{{$data->questions}}</td>
                                 </tr>
                                 <tr>
-                                    <th style="width: 100px">Keywords</th>
-                                    <td>{{$data->keywords}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 100px">Description</th>
-                                    <td>{{$data->description}}</td>
-                                </tr>
-                                <tr>
-                                    <th style="width: 100px">Images</th>
-                                    <td>
-                                        @if($data->image)
-                                            <img src="{{Storage::url($data->image)}}" style="height: 50px;width: 50px">
-                                        @endif</td>
+                                    <th style="width: 100px; color: #24ff00">Answer</th>
+                                    <td style="color: #24ff00">{!!$data->answer!!}</td>
                                 </tr>
                                 <tr>
                                     <th style="width: 100px">Status</th>
@@ -50,6 +38,7 @@
                                 </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>

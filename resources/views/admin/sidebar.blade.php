@@ -84,9 +84,29 @@
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html" style="color: #9b1308">New Order</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/dropdowns.html" style="color: #999b04">Accepting Order</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html" style="color: #00ac4a">Complated Order</a></li>
+                        <li class="nav-item menu-items" >
+                            <a class="nav-link" href="/pages/ui-features/buttons.html" style="color: #9b1308">
+                                <span>
+
+                                </span>
+                                <span class="menu-sub-title">New Order</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pages/ui-features/dropdowns.html" style="color: #999b04">
+                                <span>
+
+                                </span>
+                                <span class="menu-sub-title">Accepting Order</span>
+                            </a>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html" style="color: #00ac4a">
+                                <span>
+
+                                </span>
+                                <span class="menu-sub-title">Completed Order</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -115,7 +135,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/messages">
+                <a class="nav-link" href="{{route('admin.message.index')}}">
               <span class="menu-icon">
                <ion-icon name="chatbubble-outline"></ion-icon>
               </span>
@@ -131,7 +151,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/faq">
+                <a class="nav-link" href="{{route('admin.faq.index')}}">
               <span style="color: #ffffff" class="menu-icon">
                 <ion-icon name="help-outline"></ion-icon>
               </span>
