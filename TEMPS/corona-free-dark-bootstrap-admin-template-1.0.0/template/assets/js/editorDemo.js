@@ -128,7 +128,7 @@
       }
     });
 
-    $('#comments').editable({
+    $('#comment').editable({
       showbuttons: 'bottom'
     });
 

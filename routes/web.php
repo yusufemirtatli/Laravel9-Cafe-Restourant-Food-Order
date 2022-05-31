@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPanel\AdminProductController;
 use App\Http\Controllers\AdminPanel\CategoryController;
+use App\Http\Controllers\AdminPanel\CommentController;
 use App\Http\Controllers\AdminPanel\FaqController;
 use App\Http\Controllers\AdminPanel\ImageController;
 use App\Http\Controllers\AdminPanel\MessageController;
@@ -89,6 +90,14 @@ Route::post('/storecomment',[HomeController::class,'storecomment'])->name('store
 
         // **************************** ADMİN MESSAGE ROUTES ******************************
         Route::prefix('/message')->name('message.')->controller(MessageController::class)->group(function () {
+            Route::get('/','index')->name('index');
+            Route::get('/show/{id}','show')->name('show');
+            Route::post('/update/{id}','update')->name('update');
+            Route::get('/destroy/{id}', 'destroy')->name('destroy');
+        });
+
+        // **************************** ADMİN COMMENTS ROUTES ******************************
+        Route::prefix('/comment')->name('comment.')->controller(CommentController::class)->group(function () {
             Route::get('/','index')->name('index');
             Route::get('/show/{id}','show')->name('show');
             Route::post('/update/{id}','update')->name('update');

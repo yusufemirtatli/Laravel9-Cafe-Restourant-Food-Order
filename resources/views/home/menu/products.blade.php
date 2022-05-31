@@ -26,10 +26,7 @@
                                             <p class="float-right text-primary">${{$rs->price}}</p>
                                         </div>
                                         <div class="body">
-                                            <span class="menu-icon">
 
-                                               <img src="/assets/imgs/add.png" class="icon float-right" width="25" height="25">
-                                            </span>
                                             <p>{{$rs->description}}</p>
                                         </div>
                                     </div>

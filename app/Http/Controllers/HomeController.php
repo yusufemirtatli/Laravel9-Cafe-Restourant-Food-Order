@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,12 +93,16 @@ class HomeController extends Controller
     {
         $data = Product::find($id);
         $productlist1 = DB::table('products')->where('category_id', $id)->get();
+        $reviews = Comment::where('product_id',$id)->get();
+
 
         return view('home.menu.productdetail',[
             'data'=>$data,
             'productlist1'=>$productlist1,
+            'reviews'=>$reviews
 
         ]);
+
     }
     public function faq()
     {
@@ -116,17 +121,7 @@ class HomeController extends Controller
         $data->ip=request()->ip();
         $data->rate = $request->input('rate');
         $data->save();
-        $setting = Setting::first();
-        $productlist1=Product::limit(6)->get();
-        $datalist = Faq::all();
-        $datas = Product::all();
-        return view('home.index',[
-            'data'=>$data,
-            'setting'=>$setting,
-            'productlist1'=>$productlist1,
-            'datalist'=>$datalist,
-            'datas'=>$datas
-        ]);
+       return redirect()->route('productdetail',['id'=>$request->input('product_id')])->with('success','Thank You');
     }
 
 }
