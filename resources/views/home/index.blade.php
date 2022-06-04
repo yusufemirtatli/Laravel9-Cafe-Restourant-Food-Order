@@ -94,7 +94,7 @@
                     <div class="row text-left">
                         @foreach($productlist1 as $rs)
                             <div class="col-md-6 mb-4">
-                                <a class="custom-list" href="">
+                                <a class="custom-list" href="/productdetail/{{$rs->id}}">
                                     <div class="img-holder">
                                         <img src="{{Storage::url($rs->image)}}">
                                     </div>
@@ -104,9 +104,7 @@
                                             <p class="float-right text-primary">${{$rs->price}}</p>
                                         </div>
                                         <div class="body">
-                                            <span class="menu-icon">
-                                               <img src="/assets/imgs/add.png" class="icon float-right" width="25" height="25">
-                                            </span>
+
                                             <p style="color: #4a4848">{{$rs->description}}</p>
                                         </div>
                                     </div>
@@ -127,7 +125,7 @@
             <div class="row">
                 @foreach($productlist1 as $rs)
                     <div class="col-md-6 mb-4">
-                        <a href="javascrip:void(0)" class="custom-list">
+                        <a href="/productdetail/{{$rs->id}}" class="custom-list">
                             <div class="img-holder">
                                 <img src="{{Storage::url($rs->image)}}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Pigga Landing page">
                             </div>

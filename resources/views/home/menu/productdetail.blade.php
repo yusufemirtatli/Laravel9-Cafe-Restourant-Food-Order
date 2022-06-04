@@ -79,12 +79,22 @@
                 <div class="title col md-4 my-3">
 
                     <h3>Price: ${{$data->price}}</h3>
-                    <div class="">
-                        sa
+                    @php
+                    $average = $data->comment->average('rate')
+                    @endphp
+                    <div>
+                        <div class="rate text-center">
+
+                             <i>{{$average}}★</i>
+
+                        </div>
+                         <a href="#review">{{$data->comment->count('id')}} Review(s) </a>
                     </div>
+                    <br>
                     <b style="font-size: 25px">Contents:</b> {{$data->contents}}
                     <br>
                     <b style="font-size: 25px">Origin:</b> {{$data->origin}}
+
                   <div style="margin-top: 20px">
 
                       {!!$data->detail!!}

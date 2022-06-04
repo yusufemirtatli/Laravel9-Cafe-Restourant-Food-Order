@@ -27,10 +27,32 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="components.html" class="btn btn-primary btn-sm">Components</a>
+                    @auth()
+                    <div class="dropdown d-inline-block" style="margin-right: 20px">
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle fa fa-user text-uppercase" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{Auth::user()->name}}
+                        </button>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
+                            <a class="dropdown-item " style="color: #0a0a0a" href="#">Profile</a>
+                        </div>
+                        <a href="/logoutuser" style="color: #FFFFFF;margin-left: 5px" class="text-uppercase">Logout</a>
+                    </div>
+                    @endauth
+                </li>
+                @guest
+                <li class="nav-item">
+                    <a href="{{route('loginuser')}}" class="btn btn-secondary btn-sm"> Login </a>
+                    <a href="{{route('registeruser')}}" class="btn btn-secondary btn-sm">Register</a>
+                </li>
+                @endguest
+                <li class="nav-item">
+                    <a href="components.html" style="margin-left: 20px" class="btn btn-primary btn-sm">Shopcard</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+<script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+<script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
 <!-- End Of Second Navigation -->
