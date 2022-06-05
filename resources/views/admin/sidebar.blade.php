@@ -143,7 +143,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/admin/users">
+                <a class="nav-link" href="{{route('admin.user.index')}}">
               <span style="color: #6efff2" class="menu-icon">
                 <ion-icon name="person-outline"></ion-icon>
               </span>
