@@ -77,35 +77,43 @@
                     <img src="{{Storage::url($data->image)}}">
                 </div>
                 <div class="title col md-4 my-3">
-
+@include('home.messages')
                     <h3>Price: ${{$data->price}}</h3>
                     @php
-                    $average = $data->comment->average('rate')
+                        $average = $data->comment->average('rate')
                     @endphp
                     <div>
                         <div class="rate text-center">
 
-                             <i>{{$average}}★</i>
+                            <i>{{$average}}★</i>
 
                         </div>
-                         <a href="#review">{{$data->comment->count('id')}} Review(s) </a>
+                        <a href="#review">{{$data->comment->count('id')}} Review(s) </a>
                     </div>
                     <br>
                     <b style="font-size: 25px">Contents:</b> {{$data->contents}}
                     <br>
                     <b style="font-size: 25px">Origin:</b> {{$data->origin}}
 
-                  <div style="margin-top: 20px">
+                    <div style="margin-top: 20px">
 
-                      {!!$data->detail!!}
+                        {!!$data->detail!!}
 
-                  </div>
+                    </div>
 
                 </div>
             </div>
-            <div class="text-center">
-                <div class="btn btn-primary" style="margin-top: 20px">Add to shopcard</div>
-            </div>
+            <form action="{{route('shopcart.store')}}" method="post">
+                @csrf
+                <div class="text-center">
+                    <div class="input-sm">
+                        <span class="text-uppercase">QTY:</span>
+                        <input class="input-sm text-center" name="quantity" type="number" value="1" min="1">
+                        <input class="input-sm text-center" name="id" type="hidden" value="{{$data->id}}">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Add to shopcard</button>
+                </div>
+            </form>
 
         </div>
     </section>
@@ -116,24 +124,24 @@
 
             <div class="row">
                 @foreach($reviews as $rs)
-                <div class="col-md-4 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="media align-items-center mb-3">
+                    <div class="col-md-4 my-3 my-md-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center mb-3">
 
-                                <div class="media-body">
-                                    <h6 class="mt-1 mb-0">{{$rs->user->name}}</h6>
-                                    <small class="text-muted mb-0">{{$rs->subject}}</small>
+                                    <div class="media-body">
+                                        <h6 class="mt-1 mb-0">{{$rs->user->name}}</h6>
+                                        <small class="text-muted mb-0">{{$rs->subject}}</small>
+                                    </div>
+                                    <div class="media rate">
+                                        <h5>★</h5>
+                                        <i>{{$rs->rate}}</i>
+                                    </div>
                                 </div>
-                                <div class="media rate">
-                                    <h5>★</h5>
-                                    <i>{{$rs->rate}}</i>
-                                </div>
+                                <p class="mb-0">{{$rs->review}}</p>
                             </div>
-                            <p class="mb-0">{{$rs->review}}</p>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>

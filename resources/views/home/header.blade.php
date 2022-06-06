@@ -34,9 +34,11 @@
                         </button>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
-                            <a class="dropdown-item " style="color: #0a0a0a" href="#">Profile</a>
+                            <a class="dropdown-item " style="color: #0a0a0a" href="{{route('userprofile')}}">Profile</a>
+                            <a class="dropdown-item " style="color: #0a0a0a" href="#">Favories</a>
+                            <a class="dropdown-item " style="color: #0a0a0a" href="{{route('myreviews')}}">My Reviews</a>
+                            <a class="dropdown-item text-uppercase" href="/logoutuser" style="color: rgba(255,24,21,0.85)">Logout</a>
                         </div>
-                        <a href="/logoutuser" style="color: #FFFFFF;margin-left: 5px" class="text-uppercase">Logout</a>
                     </div>
                     @endauth
                 </li>
@@ -47,7 +49,7 @@
                 </li>
                 @endguest
                 <li class="nav-item">
-                    <a href="components.html" style="margin-left: 20px" class="btn btn-primary btn-sm">Shopcard</a>
+                    <a href="{{route('shopcart.index')}}" style="margin-left: 20px" class="btn btn-primary btn-sm">Shopcart</a>
                 </li>
             </ul>
         </div>
