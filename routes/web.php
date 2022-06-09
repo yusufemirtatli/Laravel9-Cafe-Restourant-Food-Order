@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::prefix('menu')->name('menu.')->controller(HomeController::class)->group(function (){
     Route::get('/',[HomeController::class,'menu'])->name('menu');
     Route::get('/{id}','products')->name('products');
+    Route::get('/submenu/{id}','submenu')->name('submenu');
     Route::get('/{id}/productdetail','productdetail')->name('productdetail');
 
 
@@ -69,10 +70,13 @@ Route::middleware('auth')->group(function (){
         Route::get('/','index')->name('index');
         Route::get('/create','create')->name('create');
         Route::post('/store','store')->name('store');
+        Route::post('/order','order')->name('order');
+        Route::post('/storeorder','storeorder')->name('storeorder');
         Route::get('/edit/{id}', 'edit')->name('edit');
         Route::post('/update/{id}', 'update')->name('update');
         Route::get('/destroy/{id}', 'destroy')->name('destroy');
         Route::get('/show/{id}', 'show')->name('show');
+        Route::get('/ordercomplate','ordercomplate')->name('ordercomplate');
     });
 
 

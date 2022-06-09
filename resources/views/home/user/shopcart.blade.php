@@ -36,7 +36,9 @@
 
     <section id="shopcart" class="pattern-style-4 has-overlay">
         <div class="container raise-2">
-            <h3 class="section-title mb-6 pb-3 text-center">User ShopCart</h3>
+            <h3 class="section-title mb-6 pb-3 text-center">Orders</h3>
+            <h4 class="text-center">{{\App\Http\Controllers\ShopCartController::countshopcart()}} Items in shopcart</h4>
+            @include('home.messages')
             <div class="cart-section mt-150 mb-150">
                 <div class="container">
                     <div class="row">
@@ -54,14 +56,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @php($total=0)
+                                    @foreach($data as $rs)
                                     <tr class="table-body-row">
-                                        <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                                        <td class="product-image"><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-                                        <td class="product-name">Strawberry</td>
-                                        <td class="product-price">$85</td>
-                                        <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                        <td class="product-total">1</td>
+                                        <td class="product-remove"><a href="/shopcart/destroy/{{$rs->id}}"><i class="far fa-window-close"></i></a></td>
+                                        <td class="product-image"><img src="{{Storage::url($rs->product->image)}}" alt=""></td>
+                                        <td class="product-name">{{$rs->product->title}}</td>
+                                        <td class="product-price">${{$rs->product->price}}</td>
+                                        <td class="product-quantity">
+                                            <form action="/shopcart/update/{{$rs->id}}" method="post">
+                                                @csrf
+                                                <input name="quantity" type="number" value="{{$rs->quantity}}" min="1" onchange="this.form.submit()">
+                                            </form>
+                                        </td>
+                                        <td class="product-total">${{$rs->product->price * $rs->quantity}}</td>
                                     </tr>
+                                        @php($total += $rs->product->price * $rs->quantity)
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -79,21 +90,24 @@
                                     <tbody>
                                     <tr class="total-data">
                                         <td><strong>Subtotal: </strong></td>
-                                        <td>$500</td>
-                                    </tr>
-                                    <tr class="total-data">
-                                        <td><strong>Shipping: </strong></td>
-                                        <td>$45</td>
+                                        <td>${{$total}}</td>
                                     </tr>
                                     <tr class="total-data">
                                         <td><strong>Total: </strong></td>
-                                        <td>$545</td>
+                                        <td>${{$total}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <div class="cart-buttons">
-                                    <a href="cart.html" class="boxed-btn">Update Cart</a>
-                                    <a href="checkout.html" class="boxed-btn black">Check Out</a>
+                                    <form action="{{route("shopcart.order")}}" method="post">
+                                        @csrf
+                                        <input name="total" value="{{$total}}" type="hidden">
+                                        <button type="submit" class="btn btn-primary btn-rounded btn-fw">
+                                            Place Order
+                                        </button>
+                                        <a href="{{route('menu.menu')}}" class="btn btn-primary btn-rounded btn-fw">Update Cart</a>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>

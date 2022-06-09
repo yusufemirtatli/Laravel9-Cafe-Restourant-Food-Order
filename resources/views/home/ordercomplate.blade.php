@@ -1,0 +1,105 @@
+@extends('layouts.main')
+<style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active, .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+    }
+    .rate:not(:checked) > input {
+        position:absolute;
+        top:-9999px;
+    }
+    .rate:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+    }
+    .rate:not(:checked) > label:before {
+        content: '★ ';
+    }
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+
+</style>
+@section('title','Payment Information')
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+@section('content')
+
+
+    <section id="about" class="has-img-bg" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    @include('home.messages')
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="py-4 border border-lighter border-bottom-0 border-left-0 border-right-0 bg-dark">
+            <div class="container">
+                <div class="row justify-content-between align-items-center text-center">
+                    <div class="col-md-3 text-md-left mb-3 mb-md-0">
+                    </div>
+                    <div class="col-md-9 text-md-right">
+                        <a href="#" class="px-3"><small class="font-weight-bold">Our Company</small></a>
+                        <a href="#" class="px-3"><small class="font-weight-bold">Help Center</small></a>
+                        <a href="components.html" class="pl-3"><small class="font-weight-bold">Components</small></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+        </script>
+@endsection
+

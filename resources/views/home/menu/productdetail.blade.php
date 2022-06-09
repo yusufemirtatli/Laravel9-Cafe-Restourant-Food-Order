@@ -70,24 +70,22 @@
 
 @section('content')
     <section id="productdetail">
-        <div class="container">
+        <div class="text-center" >
             <h3 class="section-title mb-5 text-center">{{$data->title}}</h3>
-            <div class="row">
-                <div class="align-items-md-center mb-xl-4 col md-4 my-3">
-                    <img src="{{Storage::url($data->image)}}">
+            <div class="row text-center">
+                <div class="col-sm-6" style="padding-left:160px">
+                    <img style="width:450px;height: 450px" src="{{Storage::url($data->image)}}">
                 </div>
-                <div class="title col md-4 my-3">
-@include('home.messages')
+                <div class="title col-md-6 my-3" style="padding-right: 550px">
+
+                    @include('home.messages')
                     <h3>Price: ${{$data->price}}</h3>
                     @php
                         $average = $data->comment->average('rate')
                     @endphp
                     <div>
-                        <div class="rate text-center">
 
-                            <i>{{$average}}★</i>
-
-                        </div>
+                        <i>{{$average}}★</i>
                         <a href="#review">{{$data->comment->count('id')}} Review(s) </a>
                     </div>
                     <br>
@@ -103,18 +101,21 @@
 
                 </div>
             </div>
-            <form action="{{route('shopcart.store')}}" method="post">
-                @csrf
-                <div class="text-center">
-                    <div class="input-sm">
-                        <span class="text-uppercase">QTY:</span>
-                        <input class="input-sm text-center" name="quantity" type="number" value="1" min="1">
-                        <input class="input-sm text-center" name="id" type="hidden" value="{{$data->id}}">
+            <div class="row" style="margin-top: 40px">
+                <div class="col-md-12">
+                <form action="{{route('shopcart.store')}}" method="post">
+                    @csrf
+                    <div class="text-center">
+                        <div class="input-sm">
+                            <span class="text-uppercase">QTY:</span>
+                            <input class="input-sm text-center" name="quantity" type="number" value="1" min="1">
+                            <input class="input-sm text-center" name="id" type="hidden" value="{{$data->id}}">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px">Add to shopcard</button>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Add to shopcard</button>
+                </form>
                 </div>
-            </form>
-
+            </div>
         </div>
     </section>
 

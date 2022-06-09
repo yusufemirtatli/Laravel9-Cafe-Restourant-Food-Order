@@ -22,5 +22,9 @@ class Product extends Model
         # bir product birden fazla comment içerdiği alabilir
         return $this->hasMany(Comment::class);
     }
+    public function shopcart()
+    {
+        return $this->hasMany(ShopCart::class);
+    }
 
 }

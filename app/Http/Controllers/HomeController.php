@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    public static function maincategorylist()
+    {
+        return Category::where('parent_id', '=', 0)->with('children')->get();
+    }
+
     public function index()
     {
         $page='home';
@@ -69,7 +74,7 @@ class HomeController extends Controller
     public function menu()
     {
         //
-        $data= Category::all();
+        $data= $this->maincategorylist();
         return view('home.menu.menu',[
             'data' => $data
 
@@ -77,6 +82,21 @@ class HomeController extends Controller
         ]);
         $data->parent_id = $request->parent_id;
     }
+
+
+    public function submenu($id)
+    {
+        //
+        $parent=Category::find($id);
+        $data =   $parent->children;
+
+        return view('home.menu.menu',[
+            'data' => $data
+
+        ]);
+        $data->parent_id = $request->parent_id;
+    }
+
     public function products($id)
     {
 
